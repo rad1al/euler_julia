@@ -1,3 +1,5 @@
+module math_tools
+
 function factorize(x :: Int)
     s = Set{Int64}()
     for y in 1:isqrt(x) # isqrt obtains the integer sqrt
@@ -175,4 +177,6 @@ function int2digits(x :: Int)
         x = div(x, 10)
     end
     return digits
+end
+
 end

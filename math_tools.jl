@@ -70,7 +70,7 @@ function is_palindrome(word)
 	end
 end
 
-function recursive_powerset(lst)
+function recursive_powerset(lst :: Array)
 	if isempty(lst)
 		return [[]]
 	else
@@ -79,8 +79,75 @@ function recursive_powerset(lst)
 	end
 end
 
+function powerset_c(lst :: Array)
+	output = [[]]
+	for item in lst
+		output = [output; [[subset; [item]] for subset in output]]
+	end
+	return output
+end
 
+function million_primes()
+	# return an array of primes up to 1 million
+end
 
+function hundred_million_primes()
+	# return an array of primes up to 100 million
+end
+
+function squares(n :: Int)
+	return [x*x for x in 1:n]
+end
+
+function triangles(n :: Int)
+	return [div(x*(x+1),2) for x in 1:n]
+end
+
+function pentagons(n :: Int)
+	return [div(x*(3x-1), 2) for x in 1:n]
+end
+
+function hexagons(n)
+	return [x*(2x-1) for x in 1:n]
+end
+
+function int2bin(n :: Int)
+	return bin(n)
+end
+
+function concat(xxs)
+	return reduce((x,y) -> [x;y], xxs)
+end
+
+function check_perm_s(a,b)
+	# Check if 2 strings are permutations of each other.
+	if sort(a) == sort(b)
+		return true
+	else
+		return false
+	end
+end
+
+function check_perm_n(a,b)
+	# Check if 2 integers are permuations of another.
+	tally = zeros(Int, 10)
+	while a > 0
+		n = a % 10
+		tally[n+1] += 1
+		a = div(a, 10)
+	end
+	while b > 0
+		n = b % 10
+		tally[n+1] -= 1
+		b = div(b, 10)
+	end
+	for i in tally
+		if i != 0
+			return false
+		end
+	end
+	return true
+end
 
 
 

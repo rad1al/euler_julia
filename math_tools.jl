@@ -1,4 +1,8 @@
+include("io_tools.jl")
+
 module math_tools
+
+import io_tools: read_data
 
 function factorize(x :: Int)
     s = Set{Int64}()
@@ -37,6 +41,26 @@ function e_sieve(n :: Int)
                 a[j:i:n] = false
             end
         end
+    end
+end
+
+function is_prime(x :: Int)
+    if x == 0 || x == 1
+        return false
+    elseif x == 2
+        return true
+    elseif x % 2 == 0
+        return false
+    end
+    k = 3
+    check_bound = isqrt(x) + 1
+    while true
+        if k >= check_bound
+            return true
+        elseif x % k == 0
+            return false
+        end
+        k += 2
     end
 end
 
@@ -89,12 +113,22 @@ function powerset_c(lst :: Array)
     return output
 end
 
-function million_primes()
+function million_primes(t = Int)
     # return an array of primes up to 1 million
+    if t == Int
+        return [parse(Int64,x) for x in read_data("data/primes_up_to_1e6.txt")]
+    else
+        return read_data("data/primes_up_to_1e6.txt")
+    end
 end
 
-function hundred_million_primes()
+function hundred_million_primes(t = Int)
     # return an array of primes up to 100 million
+    if t == Int
+        return [parse(Int64,x) for x in read_data("data/primes_up_to_1e8.txt")]
+    else
+        return read_data("data/primes_up_to_1e8.txt")
+    end
 end
 
 function squares(n :: Int)

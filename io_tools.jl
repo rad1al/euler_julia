@@ -10,6 +10,9 @@ function read_data(filename, delim = ',')
 		else
 			data_arr = data
 		end
+		if data_arr[end] == "" || string(data_arr[end]) == "\n"
+			pop!(data_arr)
+		end
 		return data_arr
 	end
 end

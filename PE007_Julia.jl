@@ -9,7 +9,7 @@ function e_sieve(n :: Int)
 	lst[1] = false
 	for i in 1:isqrt(length(lst))+1
 		if lst[i] == true
-			lst[i*i:i:end] = false
+			lst[i^2:i:end] = false
 		end
 	end
 	return find(lst)

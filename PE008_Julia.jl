@@ -32,8 +32,12 @@ import io_tools: read_data
 import math_tools: product
 
 data = read_data("data/PE8_data.txt")
+
 # num_str = reduce((a,b) -> a*b, data)
 num_str = join(data) # more Julian solution
+
+num_str :: String
+
 digits = map(x -> parse(Int64,x), collect(num_str))
 
 function largest_prod(nums, n)
